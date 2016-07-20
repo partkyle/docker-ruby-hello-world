@@ -1,0 +1,15 @@
+version: '2'
+services:
+  redis:
+    image: redis:2.8
+
+  app:
+    build: .
+    depends_on:
+      - redis
+    environment:
+      - REDIS_URL=redis://redis:6379/tmp
+      - HOST=0.0.0.0
+      - PORT=80
+    ports:
+      - 80
